@@ -39,12 +39,12 @@ def classify_and_copy_files(source_folder, destination_folder):
         # Copier le fichier vers le dossier de destination
         shutil.copy(source_path, os.path.join(destination_path, filename))
         print(f"File '{filename}' copied to {destination_path}")
+        os.remove
 
 if __name__ == "__main__":
     # Spécifier les dossiers source et destination
-    source_disk = 'C:\\'
     while True:
-        source_folder = source_disk + input('Enter the source folder: C:\\')
+        source_folder = input('Enter the source folder: C:\\')
         if os.path.exists(source_folder):
             break
         else :

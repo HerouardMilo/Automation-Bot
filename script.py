@@ -44,12 +44,12 @@ def classify_and_copy_files(source_folder, destination_folder):
 if __name__ == "__main__":
     # Spécifier les dossiers source et destination
     while True:
-        source_folder = input('Enter the source folder: C:\\')
+        source_folder = input('Enter the source folder: ')
         if os.path.exists(source_folder):
             break
         else :
             print('The source folder does not exist')
-    destination_folder = 'D:\\OrganizedFiles'
+    destination_folder = input('Enter the destination folder: ')
 
     # Appeler la fonction pour classer et copier les fichiers
     classify_and_copy_files(source_folder, destination_folder)

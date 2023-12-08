@@ -13,7 +13,7 @@ if __name__ == "__main__":
     all_extensions =image_extensions + document_extensions + video_extensions
 
     for extension in all_extensions:
-        file_name = f'sample.{extension}'
+        file_name = f'sample{extension}'
         file_path = os.path.join(base_directory, file_name)
 
         try:

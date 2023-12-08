@@ -1,40 +1,109 @@
-# Algorithme pour Classer et Copier des Fichiers
+# File Organizer
 
-## Objectif
-L'objectif de cet algorithme est de créer un bot qui automatise le processus de classification et de copie des fichiers du lecteur C: vers le lecteur D: afin d'optimiser l'espace de stockage et de maintenir les fichiers système propres et organisés.
+## Overview
 
-## Étapes
+The File Organizer is a simple Python script with a graphical user interface (GUI) built using Tkinter. This script helps organize files from a source directory into different destination folders based on their file extensions.
 
-1. **Définition des Extensions de Fichiers à Classer :**
-   - Images : [.jpg, .jpeg, .png, .gif]
-   - Documents : [.pdf, .docx, .xlsx, .txt]
-   - Vidéos : [.mp4, .avi, .mkv]
+## Features
 
-2. **Création du Dossier de Destination :**
-   - Vérifier si le dossier de destination existe.
-   - S'il n'existe pas, le créer.
+- Browse for source and destination folders using a GUI interface.
+- Classify files into specific folders based on their extensions.
+- Copy files to the destination folders.
+- Delete the copied files from the source folder.
+- Display a success message after organizing the files.
 
-3. **Parcourir les Fichiers du Dossier Source :**
-   - Pour chaque fichier dans le dossier source C:
-     - Ignorer les dossiers.
-     - Récupérer l'extension du fichier.
+## How to Use
 
-4. **Classer les Fichiers en Fonction de leur Extension :**
-   - Si l'extension est dans les images, copier vers le dossier "Images".
-   - Si l'extension est dans les documents, copier vers le dossier "Documents".
-   - Si l'extension est dans les vidéos, copier vers le dossier "Vidéos".
-   - Sinon, copier vers le dossier "Autres".
+1. Run the script (`script.pyw`).
+2. Use the "Browse Source" button to select the source folder.
+3. Use the "Browse Destination" button to select the destination folder.
+4. Click the "Start" button to initiate the file organization process.
 
-5. **Copier les Fichiers :**
-   - Vérifier si le dossier de destination spécifique existe.
-   - S'il n'existe pas, le créer.
-   - Copier le fichier vers le dossier de destination.
+## File Classification
 
-6. **Afficher le Résultat :**
-   - Afficher un message indiquant que le fichier a été copié avec succès.
+- **Images:** `.jpg`, `.jpeg`, `.png`, `.gif`
+- **Documents:** `.pdf`, `.docx`, `.xlsx`, `.txt`
+- **Videos:** `.mp4`, `.avi`, `.mkv`
+- **Other:** Files with extensions not covered in the above categories.
 
-## Exécution
-- Spécifier les dossiers source et destination.
-- Appeler la fonction pour classer et copier les fichiers.
+## Example
 
-Cet algorithme peut être adapté en fonction des besoins spécifiques de l'utilisateur en ajoutant d'autres critères de classification.
+Suppose you have files in a folder named `DataProject`:
+
+- `D:/DataProject/testOrigine/sample.jpg`
+- `D:/DataProject/testOrigine/sample.docx`
+- ...
+
+After running the script:
+
+- Images will be copied to `D:/DataProject/testDestination/Images`.
+- Documents will be copied to `D:/DataProject/testDestination/Documents`.
+- Videos will be copied to `D:/DataProject/testDestination/Videos`.
+- Other files will be copied to `D:/DataProject/testDestination/Other`.
+
+## Notes
+
+- Files are deleted from the source folder after being copied.
+- The success message will be displayed once the process is complete.
+
+## Dependencies
+
+- Python 3.x
+- Tkinter (Included in standard Python distribution)
+
+Feel free to use and modify the script according to your needs!
+
+# File Organizer
+
+## Overview
+
+The File Organizer is a simple Python script with a graphical user interface (GUI) built using Tkinter. This script helps organize files from a source directory into different destination folders based on their file extensions.
+
+## Features
+
+- Browse for source and destination folders using a GUI interface.
+- Classify files into specific folders based on their extensions.
+- Copy files to the destination folders.
+- Delete the copied files from the source folder.
+- Display a success message after organizing the files.
+
+## How to Use
+
+1. Run the script (`script.py`).
+2. Use the "Browse Source" button to select the source folder.
+3. Use the "Browse Destination" button to select the destination folder.
+4. Click the "Start" button to initiate the file organization process.
+
+## File Classification
+
+- **Images:** `.jpg`, `.jpeg`, `.png`, `.gif`
+- **Documents:** `.pdf`, `.docx`, `.xlsx`, `.txt`
+- **Videos:** `.mp4`, `.avi`, `.mkv`
+- **Other:** Files with extensions not covered in the above categories.
+
+## Example
+
+Suppose you have files in a folder named `DataProject`:
+
+- `D:/DataProject/testOrigine/sample.jpg`
+- `D:/DataProject/testOrigine/sample.docx`
+- ...
+
+After running the script:
+
+- Images will be copied to `D:/DataProject/testDestination/Images`.
+- Documents will be copied to `D:/DataProject/testDestination/Documents`.
+- Videos will be copied to `D:/DataProject/testDestination/Videos`.
+- Other files will be copied to `D:/DataProject/testDestination/Other`.
+
+## Notes
+
+- Files are deleted from the source folder after being copied.
+- The success message will be displayed once the process is complete.
+
+## Dependencies
+
+- Python 3.x
+- Tkinter (Included in standard Python distribution)
+
+Feel free to use and modify the script according to your needs!

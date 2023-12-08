@@ -8,7 +8,7 @@ if __name__ == "__main__":
     base_directory = 'testOrigine'
 
     if not os.path.exists(base_directory):
-        os.maledirs(base_directory)
+        os.makedirs(base_directory)
 
     all_extensions =image_extensions + document_extensions + video_extensions
 

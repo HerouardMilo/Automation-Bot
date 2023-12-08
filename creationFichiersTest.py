@@ -13,6 +13,6 @@ if __name__ == "__main__":
         try:
             with open(file_path, 'w') as file:
                 pass
-            print(f'The file {file_path} has been created successfully')
+            print(f'The file {file_path} has been created successfully !')
         except OSError as e:
             print(f"Error opening: {file_path} - {e.strerror}")

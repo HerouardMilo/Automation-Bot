@@ -13,33 +13,36 @@ def classify_and_copy_files(source_folder, destination_folder, success_label):
 
     copied_files = []
 
-    for filename in os.listdir(source_folder):
-        source_path = os.path.join(source_folder, filename)
+    for folder_path, _, files in os.walk(source_folder):
+        for filename in files:
+            source_path = os.path.join(folder_path, filename)
 
-        if os.path.isdir(source_path):
-            continue
+            _, file_extension = os.path.splitext(filename)
 
-        _, file_extension = os.path.splitext(filename)
+            if file_extension in image_extensions:
+                destination_path = os.path.join(destination_folder, 'Images')
+            elif file_extension in document_extensions:
+                destination_path = os.path.join(destination_folder, 'Documents')
+            elif file_extension in video_extensions:
+                destination_path = os.path.join(destination_folder, 'Videos')
+            else:
+                destination_path = os.path.join(destination_folder, 'Other')
 
-        if file_extension in image_extensions:
-            destination_path = os.path.join(destination_folder, 'Images')
-        elif file_extension in document_extensions:
-            destination_path = os.path.join(destination_folder, 'Documents')
-        elif file_extension in video_extensions:
-            destination_path = os.path.join(destination_folder, 'Videos')
-        else:
-            destination_path = os.path.join(destination_folder, 'Other')
+            if not os.path.exists(destination_path):
+                os.makedirs(destination_path)
 
-        if not os.path.exists(destination_path):
-            os.makedirs(destination_path)
+            shutil.copy(source_path, os.path.join(destination_path, filename))
+            copied_files.append(source_path)
+            print(f"File '{filename}' copied to {destination_path}")
 
-        shutil.copy(source_path, os.path.join(destination_path, filename))
-        copied_files.append(filename)
-        print(f"File '{filename}' copied to {destination_path}")
+    for file_path in copied_files:
+        os.remove(file_path)
+        print(f"File '{file_path}' deleted.")
 
-    for filename in copied_files:
-        os.remove(os.path.join(source_folder, filename))
-        print(f"File '{filename}' deleted from {source_folder}")
+    for subfolder in next(os.walk(source_folder))[1]:
+        subfolder_path = os.path.join(source_folder, subfolder)
+        shutil.rmtree(subfolder_path)
+        print(f"Subfolder '{subfolder}' deleted from '{source_folder}'.")
 
     success_label.config(text=f"Success! Files have been organized in {destination_folder}.")
 
@@ -48,6 +51,7 @@ def browse_button(entry_var):
     entry_var.set(folder_selected)
 
 if __name__ == "__main__":
+
     root = tk.Tk()
     root.title("File Organizer")
 

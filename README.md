@@ -107,3 +107,59 @@ After running the script:
 - Tkinter (Included in standard Python distribution)
 
 Feel free to use and modify the script according to your needs!
+
+--------------------------------------------------------------------
+# File Creation Script
+
+This script creates sample files with different extensions inside directories and outside.
+
+## Usage
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/yourusername/your-repo.git
+    ```
+
+2. **Navigate to the script directory:**
+
+    ```bash
+    cd your-repo
+    ```
+
+3. **Run the script:**
+
+    ```bash
+    python script.py
+    ```
+
+## Description
+
+The script creates a base directory named `testOrigine` and populates it with sample files. Files are organized into directories based on their extensions. The script checks for file existence before attempting to create them to avoid overwriting existing files.
+
+## File Structure
+
+- `testOrigine/`: Base directory
+  - `Images/`: Directory for image files
+    - `sample.jpg`
+    - `sample.jpeg`
+    - `sample.png`
+    - `sample.gif`
+  - `Documents/`: Directory for document files
+    - `sample.pdf`
+    - `sample.docx`
+    - `sample.xlsx`
+    - `sample.txt`
+  - `Videos/`: Directory for video files
+    - `sample.mp4`
+    - `sample.avi`
+    - `sample.mkv`
+  - `sample_outside.jpg`: Sample file outside directories
+  - `sample_outside.pdf`
+  - `sample_outside.mp4`
+
+## Notes
+
+- The script uses `'x'` mode in `open` to create files only if they don't already exist.
+- File creation errors are handled, and appropriate messages are displayed.
+- Before running the script, ensure the environment has the necessary permissions to create files and directories.

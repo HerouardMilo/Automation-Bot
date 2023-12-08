@@ -42,7 +42,13 @@ def classify_and_copy_files(source_folder, destination_folder):
 
 if __name__ == "__main__":
     # Spécifier les dossiers source et destination
-    source_folder = 'C:\\'
+    source_disk = 'C:\\'
+    while True:
+        source_folder = source_disk + input('Enter the source folder: C:\\')
+        if os.path.exists(source_folder):
+            break
+        else :
+            print('The source folder does not exist')
     destination_folder = 'D:\\OrganizedFiles'
 
     # Appeler la fonction pour classer et copier les fichiers

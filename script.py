@@ -11,6 +11,8 @@ def classify_and_copy_files(source_folder, destination_folder, success_label):
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
 
+    copied_files = []
+
     for filename in os.listdir(source_folder):
         source_path = os.path.join(source_folder, filename)
 
@@ -32,7 +34,12 @@ def classify_and_copy_files(source_folder, destination_folder, success_label):
             os.makedirs(destination_path)
 
         shutil.copy(source_path, os.path.join(destination_path, filename))
+        copied_files.append(filename)
         print(f"File '{filename}' copied to {destination_path}")
+
+    for filename in copied_files:
+        os.remove(os.path.join(source_folder, filename))
+        print(f"File '{filename}' deleted from {source_folder}")
 
     success_label.config(text=f"Success! Files have been organized in {destination_folder}.")
 

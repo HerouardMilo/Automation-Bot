@@ -5,7 +5,7 @@ if __name__ == "__main__":
     document_extensions = ['.pdf', '.docx', '.xlsx', '.txt']
     video_extensions = ['.mp4', '.avi', '.mkv']
 
-    base_directory = 'testOrigine'
+    base_directory = "testOrigine"
 
     if not os.path.exists(base_directory):
         os.makedirs(base_directory)

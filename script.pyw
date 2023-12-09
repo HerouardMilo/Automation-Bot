@@ -7,43 +7,50 @@ from tkinter import ttk
 GUI_WIDTH = 300
 GUI_HEIGHT = 250
 
-def classify_and_copy_files(source_folder, destination_folder, success_label):
-    image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
-    document_extensions = ['.pdf', '.docx', '.xlsx', '.txt']
-    video_extensions = ['.mp4', '.avi', '.mkv']
+IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif']
+DOCUMENT_EXTENSIONS = ['.pdf', '.docx', '.xlsx', '.txt']
+VIDEO_EXTENSIONS = ['.mp4', '.avi', '.mkv']
 
+def classify_and_copy_files(source_folder, destination_folder, success_label, progress_bar):
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
 
-    copied_files = []
-
-    total_files= sum(len(files) for _, _, files in os.walk(source_folder))
+    total_files = sum(len(files) for _, _, files in os.walk(source_folder))
     progress_bar["max"] = total_files
+
+    copied_files = []
 
     for folder_path, _, files in os.walk(source_folder):
         for filename in files:
             source_path = os.path.join(folder_path, filename)
-
             _, file_extension = os.path.splitext(filename)
 
-            if file_extension in image_extensions:
-                destination_path = os.path.join(destination_folder, 'Images')
-            elif file_extension in document_extensions:
-                destination_path = os.path.join(destination_folder, 'Documents')
-            elif file_extension in video_extensions:
-                destination_path = os.path.join(destination_folder, 'Videos')
-            else:
-                destination_path = os.path.join(destination_folder, 'Other')
+            destination_path = determine_destination_path(file_extension, destination_folder)
 
             if not os.path.exists(destination_path):
                 os.makedirs(destination_path)
 
             shutil.copy(source_path, os.path.join(destination_path, filename))
             copied_files.append(source_path)
-            print(f"File '{filename}' copied to {destination_path}")
 
             progress_bar["value"] += 1
             root.update_idletasks()
+
+    remove_copied_files(copied_files, source_folder)
+
+    success_label.config(text=f"Success! Files have been organized in {destination_folder}.")
+
+def determine_destination_path(file_extension, destination_folder):
+    if file_extension in IMAGE_EXTENSIONS:
+        return os.path.join(destination_folder, 'Images')
+    elif file_extension in DOCUMENT_EXTENSIONS:
+        return os.path.join(destination_folder, 'Documents')
+    elif file_extension in VIDEO_EXTENSIONS:
+        return os.path.join(destination_folder, 'Videos')
+    else:
+        return os.path.join(destination_folder, 'Other')
+
+def remove_copied_files(copied_files,source_folder):
     for file_path in copied_files:
         os.remove(file_path)
         print(f"File '{file_path}' deleted.")
@@ -52,8 +59,6 @@ def classify_and_copy_files(source_folder, destination_folder, success_label):
         subfolder_path = os.path.join(source_folder, subfolder)
         shutil.rmtree(subfolder_path)
         print(f"Subfolder '{subfolder}' deleted from '{source_folder}'.")
-
-    success_label.config(text=f"Success! Files have been organized in {destination_folder}.")
 
 def browse_button(entry_var):
     folder_selected = filedialog.askdirectory()
@@ -77,6 +82,7 @@ if __name__ == "__main__":
     destination_button = ttk.Button(frame, text="Browse Destination", command=lambda: browse_button(destination_var))
 
     start_button = ttk.Button(frame, text="Start", command=lambda: classify_and_copy_files(source_var.get(), destination_var.get(), success_label, progress_bar))
+
     success_label = tk.Label(frame, text="", fg="green")
 
     progress_bar = ttk.Progressbar(frame, orient="horizontal", length=250, mode="determinate")

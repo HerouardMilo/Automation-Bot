@@ -82,8 +82,10 @@ if __name__ == "__main__":
     destination_button = ttk.Button(frame, text="Browse Destination", command=lambda: browse_button(destination_var))
 
     start_button = ttk.Button(frame, text="Start", command=lambda: classify_and_copy_files(source_var.get(), destination_var.get(), success_label, progress_bar))
-    progress_bar = ttk.Progressbar(frame, orient="horizontal", length=250, mode="determinate")
+
     success_label = tk.Label(frame, text="", fg="green")
+
+    progress_bar = ttk.Progressbar(frame, orient="horizontal", length=250, mode="determinate")
 
     source_entry.grid(row=0, column=0, padx=5, pady=5)
     source_button.grid(row=0, column=1, padx=5, pady=5)

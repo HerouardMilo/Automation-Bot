@@ -4,6 +4,9 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import ttk
 
+GUI_WIDTH = 300
+GUI_HEIGHT = 250
+
 def classify_and_copy_files(source_folder, destination_folder, success_label):
     image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
     document_extensions = ['.pdf', '.docx', '.xlsx', '.txt']
@@ -59,7 +62,7 @@ def browse_button(entry_var):
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("File Organizer")
-    root.geometry("300x250")
+    root.geometry(f"{GUI_WIDTH}x{GUI_HEIGHT}")
 
     frame = ttk.Frame(root)
     frame.pack(expand=True)
@@ -73,7 +76,7 @@ if __name__ == "__main__":
     source_button = ttk.Button(frame, text="Browse Source", command=lambda: browse_button(source_var))
     destination_button = ttk.Button(frame, text="Browse Destination", command=lambda: browse_button(destination_var))
 
-    start_button = ttk.Button(frame, text="Start", command=lambda: classify_and_copy_files(source_var.get(), destination_var.get(), success_label))
+    start_button = ttk.Button(frame, text="Start", command=lambda: classify_and_copy_files(source_var.get(), destination_var.get(), success_label, progress_bar))
     success_label = tk.Label(frame, text="", fg="green")
 
     progress_bar = ttk.Progressbar(frame, orient="horizontal", length=250, mode="determinate")

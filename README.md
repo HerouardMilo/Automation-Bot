@@ -48,8 +48,9 @@ After running the script:
 
 ## Dependencies
 
-- Python 3.x
-- Tkinter (Included in the standard Python distribution)
+- Run the Makefile to install all the required libraries :
+1. Python 3.x
+2. Tkinter (Included in the standard Python distribution)
 
 Feel free to use and modify the script according to your needs!
 

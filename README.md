@@ -48,7 +48,7 @@ After running the script:
 
 ## Dependencies
 
-- Run the Makefile to install all the required libraries :
+Run the Makefile to install all the required libraries :
 1. Python 3.x
 2. Tkinter (Included in the standard Python distribution)
 
